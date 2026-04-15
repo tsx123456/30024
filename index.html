@@ -19,73 +19,7 @@
            }else{
             appBox.classList.remove('pcConfig')
            }
-        }</script><div id="body_loading_spinner"><div id="top_progress_bar"></div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid" width="50" height="50" style="shape-rendering:auto;display:none;background:0 0" xmlns:xlink="http://www.w3.org/1999/xlink"><g><img id="mypic" class="progress-bar-image" src="kf_in.webp"><img id="loop" class="progress-bar-image image-1" src="kf_loop.webp"><g></g></g></svg></div><script>const logo = document.getElementById('mypic');
-	const originalSrc = logo.src;
-
-	const loop = document.getElementById('loop');
-	if(loop){
-		loop.style.display = 'none'
-	}
-	const base = window.location.pathname.split('/')[1]; 
-	const prefix = base ? `/${base}` : '';
-	const params = new URLSearchParams(window.location.search);
-	const brandName = params.get('brandName');
-		// 👇 根据 brandName 设置图片
-	let imgIn = `${prefix}/kf_in.webp`;
-	let imgLoop = `${prefix}/kf_loop.webp`;
-
-	if (brandName === 'hy') {
-	imgIn = `${prefix}/hy_in.webp`;
-	imgLoop = `${prefix}/hy_loop.webp`;
-	}
-
-	// 清空src再重新设置
-	logo.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-	loop.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-	
-	// 使用setTimeout确保重载生效
-	//setTimeout(() => {
-	//	logo.src = `${originalSrc}?t=${Date.now()}`;
-	//}, 50);
-
-	// 👉 封装刷新函数（防缓存）
-		function setLogo() {
-			
-			setTimeout(() => {
-				logo.src = imgIn + '?t=' + Date.now();
-				loop.src = imgLoop + '?t=' + Date.now();
-			}, 50);
-		}
-
-		// 设置图片
-	setLogo();
-	
-	setTimeout(function() {
-		if(loop){
-			loop.style.display = 'block'
-		}
-		logo.style.display = "none"
-		// 👇 关闭整个 loading
-		const spinner = document.getElementById('body_loading_spinner');
-		if (spinner) {
-			spinner.style.opacity = '0';
-			setTimeout(() => spinner.style.display = 'none', 1000); // 等动画结束
-		}
-	}, 20000);
-
-
-	// 暴露关闭方法（外部调用）
-	function hideLoading() {
-		const spinner = document.getElementById('body_loading_spinner');
-		if (spinner) {
-			spinner.style.opacity = '0';
-			setTimeout(() => {
-				spinner.style.display = 'none';
-			}, 500);
-		}
-	}
-
-	window.hideLoading = hideLoading;</script><style>#body_loading_spinner{position:fixed;z-index:9999999;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;top:0;left:0;padding-top:0!important;transition:opacity 1s}#top_progress_bar{position:absolute;top:0;left:0;height:.5rem;background:linear-gradient(to right,#aef034,#dbdd55);width:0%;transition:width .2s ease}.progress-bar-image{position:fixed;transform:translateY(-60%) translateX(-50%);top:50%;left:50%;z-index:9}.image-1{z-index:8}@media all and (orientation :portrait){.progress-bar-image{width:100vw;height:100vw}}</style><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div></body><script src="/30024/js/EventBus.js" charset="utf-8"></script><script></script><script>function resize() 
+        }</script><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div></body><script src="/30024/js/EventBus.js" charset="utf-8"></script><script></script><script>function resize() 
    {
     const designWidth = 1920
     const winWidth = window.innerWidth
