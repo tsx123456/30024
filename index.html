@@ -28,14 +28,19 @@ const cachedSpinner = document.getElementById('body_loading_spinner');
   if (window.eventBus) {
     window.eventBus.on("hideAppLoading", () => {
       console.log("✅ 强制关闭 loading");
-      
-      if (cachedSpinner) {
-        // ✅ 绝对能关掉的终极代码
-        cachedSpinner.style.display = 'none';
-        cachedSpinner.style.opacity = '0';
-        cachedSpinner.style.visibility = 'hidden';
-        cachedSpinner.style.pointerEvents = 'none';
-      }
+      // ✅ 永远能找到的写法
+        const spinner = 
+            document.body.querySelector('#body_loading_spinner') || 
+            document.querySelector('[id="body_loading_spinner"]');
+
+        if (spinner) {
+            console.log("✅ 找到！关闭！");
+            spinner.style.display = "none";
+            spinner.style.opacity = "0";
+            spinner.style.visibility = "hidden";
+        } else {
+            console.log("❌ 还是没找到…");
+        }
     });
   } else {
     setTimeout(listenHide, 30);
