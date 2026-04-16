@@ -36,17 +36,14 @@ function listen() {
         //}, 500);
       //}
 
-
-      const loaders = document.querySelectorAll('[id^="body_loading_spinner"], #body_loading_spinner');
-  
-        loaders.forEach(el => 
-        {
-            console.log("✅ 循环关闭");
-            el.style.opacity = "0";
-              
-            el.style.display = "none";
-              
-        });
+       if(loop){
+			loop.style.display = 'block'
+		}
+		logo.style.display = "none"
+		if (cachedSpinner) {
+			cachedSpinner.style.opacity = '0';
+			setTimeout(() => cachedSpinner.style.display = 'none', 1000);
+		}
     });
   } else {
     setTimeout(listen, 20);
