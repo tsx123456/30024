@@ -85,33 +85,41 @@
 		}
 	}
 
-	window.hideAppLoading = hideAppLoading;</script><style>#body_loading_spinner{position:fixed;z-index:9999999;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;top:0;left:0;padding-top:0!important;transition:opacity 1s}#top_progress_bar{position:absolute;top:0;left:0;height:.5rem;background:linear-gradient(to right,#aef034,#dbdd55);width:0%;transition:width .2s ease}.progress-bar-image{position:fixed;transform:translateY(-60%) translateX(-50%);top:50%;left:50%;z-index:9}.image-1{z-index:8}@media all and (orientation :portrait){.progress-bar-image{width:100vw;height:100vw}}</style><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script>// 🔥 等页面完全加载 + 分辨率渲染完成
-      window.addEventListener('load', function() {
-        resize()
-        const path = window.location.pathname
-        const search = window.location.search
+	window.hideAppLoading = hideAppLoading;</script><style>#body_loading_spinner{position:fixed;z-index:9999999;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;top:0;left:0;padding-top:0!important;transition:opacity 1s}#top_progress_bar{position:absolute;top:0;left:0;height:.5rem;background:linear-gradient(to right,#aef034,#dbdd55);width:0%;transition:width .2s ease}.progress-bar-image{position:fixed;transform:translateY(-60%) translateX(-50%);top:50%;left:50%;z-index:9}.image-1{z-index:8}@media all and (orientation :portrait){.progress-bar-image{width:100vw;height:100vw}}</style><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script>// // 🔥 等页面完全加载 + 分辨率渲染完成
+      // window.addEventListener('load', function() {
+      //   resize()
+      //   const path = window.location.pathname
+      //   const search = window.location.search
 
-        // 有参数 + 是首页才跳
-        if (search && (path === '/30024/' || path.includes('index.html'))) {
-          // 等待 60ms → 保证分辨率已经渲染
-          setTimeout(() => {
-            // 用 Vue 路由的原生路径跳转，不刷新页面！
-            history.replaceState({}, '', '/30024/entry' + search)
-            window.location.reload()
-          }, 60)
-        }
-      })
+      //   // 有参数 + 是首页才跳
+      //   if (search && (path === '/30024/' || path.includes('index.html'))) {
+      //     // 等待 60ms → 保证分辨率已经渲染
+      //     setTimeout(() => {
+      //       // 用 Vue 路由的原生路径跳转，不刷新页面！
+      //       history.replaceState({}, '', '/30024/entry' + search)
+      //       window.location.reload()
+      //     }, 60)
+      //   }
+      // })
 
-    //   window.addEventListener('load', () => {
-    //   setTimeout(() => {
-    //     // 🔥 自动获取当前项目根路径，本地/线上都能用
-    //     const base = window.location.pathname.replace(/index\.html$/, '');
-    //     const target = base + 'entry' + window.location.search;
+    // 🔥 等页面完全加载 + 分辨率渲染完成
+  window.addEventListener('load', function() {
+    resize()
+    const path = window.location.pathname
+    const search = window.location.search
 
-    //     history.replaceState({}, '', target);
-    //     window.dispatchEvent(new Event('popstate'));
-    //   }, 80);
-    // });</script></body><script src="/30024/js/EventBus.js" charset="utf-8"></script><script></script><script>function resize() 
+    // 有参数 + 是首页才跳
+    if (search && (path === '/30024/' || path.includes('index.html'))) {
+      // 等待 60ms → 保证分辨率已经渲染
+      setTimeout(() => {
+        // 跳转路由（不刷新！）
+        history.replaceState({}, '', '/30024/entry' + search)
+        
+        // ✅ 只加这一句，通知 Vue 路由更新，绝不刷新！
+        window.dispatchEvent(new Event('popstate'))
+      }, 60)
+    }
+  })</script></body><script src="/30024/js/EventBus.js" charset="utf-8"></script><script></script><script>function resize() 
    {
     const designWidth = 1920
     const winWidth = document.documentElement.clientWidth || document.body.clientWidth;
