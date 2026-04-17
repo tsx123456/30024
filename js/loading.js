@@ -124,7 +124,7 @@
       loop.style.display = 'block';
       logo.style.display = 'none';
       close("timeout");
-    }, 5000);
+    }, 20000);
 
     /* =========================
      * APP_READY
