@@ -29,12 +29,13 @@
 		if(logo) logo.style.display = 'none';
 		spinner.style.opacity = '0';
 		setTimeout(() => {
-			 spinner.style.cssText = `
-                display: none !important;
-            `
+			 spinner.style.setProperty('display', 'none', 'important')
             spinner.remove()
             document.body.offsetHeight // 强制重排
-		}, 1000);
+
+            console.log('computed display:', getComputedStyle(spinner).display)
+            console.log('opacity:', getComputedStyle(spinner).opacity)
+		}, 500);
 	});
 
 	const logo = document.getElementById('mypic');
@@ -72,9 +73,7 @@
 		if(logo) logo.style.display = 'none';
 		spinner.style.opacity = '0';
 		setTimeout(() => {
-			 spinner.style.cssText = `
-                display: none !important;
-            `
+			 spinner.style.setProperty('display', 'none', 'important')
             spinner.remove()
             document.body.offsetHeight // 强制重排
 		}, 500);
