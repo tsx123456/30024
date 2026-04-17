@@ -69,7 +69,7 @@
     // ===============================
     const CHECK_INTERVAL = 200; // 每200ms检查一次
 
-    const autoCloseTimer = setInterval(() => {
+    autoCloseTimer = setInterval(() => {
         // 你可以换成任何全局变量
         if (window.__APP_READY__ === true) {
             console.log("✅ 检测到 __APP_READY__ = true，自动关闭 spinner");
