@@ -29,7 +29,11 @@
 		if(logo) logo.style.display = 'none';
 		spinner.style.opacity = '0';
 		setTimeout(() => {
-			spinner.style.display = 'none';
+			 spinner.style.cssText = `
+                display: none !important;
+            `
+            spinner.remove()
+            document.body.offsetHeight // 强制重排
 		}, 1000);
 	});
 
@@ -68,8 +72,11 @@
 		if(logo) logo.style.display = 'none';
 		spinner.style.opacity = '0';
 		setTimeout(() => {
-			spinner.style.display = 'none';
+			 spinner.style.cssText = `
+                display: none !important;
+            `
             spinner.remove()
+            document.body.offsetHeight // 强制重排
 		}, 500);
 	}, 20000);</script><style>#body_loading_spinner{position:fixed;z-index:9999999;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;top:0;left:0;padding-top:0!important;transition:opacity 1s}#top_progress_bar{position:absolute;top:0;left:0;height:.5rem;background:linear-gradient(to right,#aef034,#dbdd55);width:0%;transition:width .2s ease}.progress-bar-image{position:fixed;transform:translateY(-60%) translateX(-50%);top:50%;left:50%;z-index:9}.image-1{z-index:8}@media all and (orientation :portrait){.progress-bar-image{width:100vw;height:100vw}}</style><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script src="/30024/js/EventBus.js" charset="utf-8"></script><script>// 🔥 等页面完全加载 + 分辨率渲染完成
       window.addEventListener('load', function() {
