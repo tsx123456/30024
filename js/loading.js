@@ -115,20 +115,19 @@
       setTimeout(() => {
         spinner.style.display = 'none';
         spinner.remove?.();
-      }, 1500);
+      }, 1000);
 
 
       clearInterval(window.__LOADING_TIMER__);
     }
+ 
 
     /* =========================
      * fallback
      ========================= */
     setTimeout(() => {
-      loop.style.display = 'block';
-      logo.style.display = 'none';
       close("timeout");
-    }, 20000);
+    }, 10000);
 
     /* =========================
      * APP_READY
