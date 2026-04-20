@@ -110,7 +110,8 @@
     /* =========================
      * 关闭逻辑
      ========================= */
-    function close(reason) {
+     const close = (reason) => {
+ 
       console.log("🧹 close:", reason);
 
       spinner.style.opacity = '0';
@@ -118,12 +119,13 @@
       setTimeout(() => {
         spinner.style.display = 'none';
         spinner.remove?.();
-      }, 500);
+      }, 1000);
 
       clearInterval(window.__LOADING_TIMER__);
     }
 
     window.loadingClose = close;
+
 
     /* =========================
      * fallback
@@ -137,11 +139,11 @@
     /* =========================
      * APP_READY
      ========================= */
-    // window.__LOADING_TIMER__ = setInterval(() => {
-    //   if (window.__APP_READY__ === true) {
-    //     close("app_ready");
-    //   }
-    // }, 200);
+    window.__LOADING_TIMER__ = setInterval(() => {
+      if (window.__APP_READY__ === true) {
+        close("app_ready");
+      }
+    }, 200);
   }
 
   init();
