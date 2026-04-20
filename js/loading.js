@@ -21,47 +21,41 @@
     const css = `
 #body_loading_spinner {
   position: fixed;
-    z-index: 9999999;
-    width: 100vw;
-    height: 100vh;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    top: 0px;
-    left: 0px;
-    padding-top: 0px !important;
-    transition: opacity 1s
+  z-index: 9999999;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 0;
+  left: 0;
+
+  transition: opacity 1s;
 }
 
 #top_progress_bar {
   position: absolute;
-		top: 0;
-		left: 0;
-		height: 0.5rem;
-		background: linear-gradient(to right, rgb(174, 240, 52), rgb(219, 221, 85));
-		width: 0%;
-		transition: width 0.2s ease;
+  top: 0;
+  left: 0;
+  height: 0.5rem;
+  background: linear-gradient(to right, #aef034, #dbdd55);
+  width: 0%;
 }
 
 .progress-bar-image {
   position: fixed;
-		transform: translateY(-60%) translateX(-50%);
-		top: 50%;
-		left: 50%;
-		z-index: 9;
+  transform: translate(-50%, -60%);
+  top: 50%;
+  left: 50%;
+  z-index: 9;
 }
 
 .image-1 {
   z-index: 8;
 }
-  @media all and (orientation : portrait) {
-		.progress-bar-image {
-			width: 100vw;
-			height: 100vw;
-		}
-	}
 `;
 
     const style = document.createElement('style');
