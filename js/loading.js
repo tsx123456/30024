@@ -124,6 +124,8 @@
       clearInterval(window.__LOADING_TIMER__);
     }
 
+
+    
     window.loadingClose = close;
 
 
