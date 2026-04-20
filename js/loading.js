@@ -107,12 +107,16 @@
     function close(reason) {
       console.log("🧹 close:", reason);
 
+      loop.style.display = 'block';
+      logo.style.display = 'none';
+
       spinner.style.opacity = '0';
 
       setTimeout(() => {
         spinner.style.display = 'none';
         spinner.remove?.();
-      }, 500);
+      }, 1500);
+
 
       clearInterval(window.__LOADING_TIMER__);
     }
