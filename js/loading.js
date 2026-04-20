@@ -125,8 +125,6 @@
     }
 
 
-    
-    window.loadingClose = close;
 
 
     /* =========================
