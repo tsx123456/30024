@@ -19,43 +19,49 @@
      * CSS 注入
      ========================= */
     const css = `
-#body_loading_spinner {
-  position: fixed;
-  z-index: 9999999;
-  width: 100vw;
-  height: 100vh;
-  background: #000;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  top: 0;
-  left: 0;
-
-  transition: opacity 1s;
+    #body_loading_spinner {
+    position: fixed;
+    z-index: 9999999;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: 0px;
+    left: 0px;
+    padding-top: 0px !important;
+    transition: opacity 1s
 }
 
 #top_progress_bar {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 0.5rem;
-  background: linear-gradient(to right, #aef034, #dbdd55);
-  width: 0%;
+		top: 0;
+		left: 0;
+		height: 0.5rem;
+		background: linear-gradient(to right, rgb(174, 240, 52), rgb(219, 221, 85));
+		width: 0%;
+		transition: width 0.2s ease;
 }
 
 .progress-bar-image {
   position: fixed;
-  transform: translate(-50%, -60%);
-  top: 50%;
-  left: 50%;
-  z-index: 9;
+		transform: translateY(-60%) translateX(-50%);
+		top: 50%;
+		left: 50%;
+		z-index: 9;
 }
 
 .image-1 {
   z-index: 8;
 }
+  @media all and (orientation : portrait) {
+		.progress-bar-image {
+			width: 100vw;
+			height: 100vw;
+		}
+	}
 `;
 
     const style = document.createElement('style');
@@ -107,36 +113,35 @@
     function close(reason) {
       console.log("🧹 close:", reason);
 
-      loop.style.display = 'block';
-      logo.style.display = 'none';
-
       spinner.style.opacity = '0';
 
       setTimeout(() => {
         spinner.style.display = 'none';
         spinner.remove?.();
-      }, 1000);
-
+      }, 500);
 
       clearInterval(window.__LOADING_TIMER__);
     }
- 
+
+    window.loadingClose = close;
 
     /* =========================
      * fallback
      ========================= */
     setTimeout(() => {
+      loop.style.display = 'block';
+      logo.style.display = 'none';
       close("timeout");
-    }, 10000);
+    }, 20000);
 
     /* =========================
      * APP_READY
      ========================= */
-    window.__LOADING_TIMER__ = setInterval(() => {
-      if (window.__APP_READY__ === true) {
-        close("app_ready");
-      }
-    }, 200);
+    // window.__LOADING_TIMER__ = setInterval(() => {
+    //   if (window.__APP_READY__ === true) {
+    //     close("app_ready");
+    //   }
+    // }, 200);
   }
 
   init();
