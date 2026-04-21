@@ -143,6 +143,7 @@
         spinner.style.display = 'none';
         spinner.remove?.();
       }, 500);
+      eventBus.emit('showGameProgress');
       clearInterval(window.__LOADING_TIMER__);
     };
 

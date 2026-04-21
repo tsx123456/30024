@@ -20,52 +20,38 @@
            }else{
             appBox.classList.remove('pcConfig')
            }
-        }</script><div id="body_loading_spinner"></div><script src="/30024/js/loading.js"></script><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script src="/30024/js/EventBus.js" charset="utf-8"></script><script>// 🔥 等页面完全加载 + 分辨率渲染完成
-      window.addEventListener('load', function() {
-        if(window.resizeGame){
-           window.resizeGame() // 🔥 页面加载重新缩放
-        }
-       
-        const path = window.location.pathname
-        const search = window.location.search
+        }</script><div id="body_loading_spinner"></div><script src="/30024/js/loading.js"></script><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script src="/30024/js/EventBus.js" charset="utf-8"></script><script>window.addEventListener('load', function () {
+  if (window.resizeGame) {
+    window.resizeGame()
+  }
 
-        // 有参数 + 是首页才跳
-        if (search && (path === '/30024/' || path.includes('index.html'))) {
-          // 等待 60ms → 保证分辨率已经渲染
-          setTimeout(() => {
-            
-            // 跳转路由（不刷新！）
-            
-              history.replaceState({}, '', '/30024/entry' + search)
-            // ✅ 只加这一句，通知 Vue 路由更新，绝不刷新！
-           // window.dispatchEvent(new Event('popstate'))
+  const path = window.location.pathname
+  const search = window.location.search
 
-            const params = new URLSearchParams(window.location.search)
-            const params2 = {
-              lang: params.get("lang") || 'en',
-              appid: params.get("appid") || 'appidtest',
-              gameId: params.get("gameId") || 'gameIdtest',
-              groupid: params.get("groupid") || 'groupidtest',
-              userid: params.get("userid") || 'useridtest',
-              ssoKey: params.get("ssoKey") || 'ssoKeytest',
-              brandName: params.get("brandName") || 'kf',
-            }
+  // 有参数 + 是首页才跳
+  if (search && (path === '/30024/' || path.includes('index.html'))) {
+    setTimeout(() => {
+      const params = new URLSearchParams(window.location.search)
+      const params2 = {
+        lang: params.get('lang') || 'en',
+        appid: params.get('appid') || 'appidtest',
+        gameId: params.get('gameId') || 'gameIdtest',
+        groupid: params.get('groupid') || 'groupidtest',
+        userid: params.get('userid') || 'useridtest',
+        ssoKey: params.get('ssoKey') || 'ssoKeytest',
+        brandName: params.get('brandName') || 'kf',
+      }
 
-            window.__GAME_PARAMS__ = params2
+      window.__GAME_PARAMS__ = params2
 
-            // 🔥 关键：已经在 entry 页面，就不跳转！
-            const fullUrl = window.location.href;
-          
-            if (!fullUrl.includes('/entry') && !fullUrl.includes('/game')) {
-              if(SocketService.isAppTest){
-                router.replace({ path: "entry", query: params2 })
-              }
-            
-            }
-            
-          }, 60)
-        }
-      })</script></body><script></script><script>// 🔥 把 resize 挂载到 window，全局可用
+      // ✅ 【唯一正确】只让 vue-router 跳转，别加任何 history
+      router.replace({
+        path: '/30024/entry', // 这里必须写全路径！！！
+        query: params2,
+      })
+    }, 60)
+  }
+})</script></body><script></script><script>// 🔥 把 resize 挂载到 window，全局可用
     window.resizeGame = function() {
       const designWidth = 1920
       const winWidth = document.documentElement.clientWidth || document.body.clientWidth
