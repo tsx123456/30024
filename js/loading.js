@@ -158,11 +158,11 @@
     /* =========================
      * APP_READY
      ========================= */
-    // window.__LOADING_TIMER__ = setInterval(() => {
-    //   if (window.__APP_READY__ === true) {
-    //     close("app_ready");
-    //   }
-    // }, 200);
+    window.__LOADING_TIMER__ = setInterval(() => {
+      if (window.__APP_READY__ === true) {
+        close("app_ready");
+      }
+    }, 200);
   }
 
   init();
