@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><link rel="icon"/><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true,viewport-fit=cover"/><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-title" content=""><link rel="apple-touch-icon-precomposed"><link sizes="114x114" rel="apple-touch-icon-precomposed"><meta content="email=no" name="format-detection"><meta name="renderer" content="webkit"/><meta name="force-rendering" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="msapplication-tap-highlight" content="no"><meta name="full-screen" content="yes"/><meta name="x5-fullscreen" content="true"/><meta name="360-fullscreen" content="true"/><meta name="screen-orientation" content="auto"/><meta name="x5-orientation" content="auto"><meta name="x5-page-mode" content="app"><link rel="preload" href="/30024/gameimg/bgloading.png" as="image"><link rel="prefetch" href="/30024/gameimg/bgloading.png" as="image"><style>.pcConfig{margin:0 auto}body,html{margin:0;padding:0;width:100vw;height:100vh;overflow:hidden}.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background:url('./gameimg/img_bg.jpg') no-repeat center center;background-size:cover;z-index:0}#app{width:100%;height:100%;width:1920px;min-height:1080px;position:relative;overflow:visible;z-index:1}#scale-root{position:fixed;left:50%;top:50%;transform-origin:center center;transform:translate(-50%,-50%);overflow:visible}</style><script type="module" crossorigin src="/30024/assets/index-9787484f.js"></script><link rel="stylesheet" href="/30024/assets/index-85b95e78.css"></head><body><script>console.log('beforeinstallprompt init')
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><link rel="icon"/><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true,viewport-fit=cover"/><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-title" content=""><link rel="apple-touch-icon-precomposed"><link sizes="114x114" rel="apple-touch-icon-precomposed"><meta content="email=no" name="format-detection"><meta name="renderer" content="webkit"/><meta name="force-rendering" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="msapplication-tap-highlight" content="no"><meta name="full-screen" content="yes"/><meta name="x5-fullscreen" content="true"/><meta name="360-fullscreen" content="true"/><meta name="screen-orientation" content="auto"/><meta name="x5-orientation" content="auto"><meta name="x5-page-mode" content="app"><link rel="preload" href="/30024/gameimg/bgloading.png" as="image"><link rel="prefetch" href="/30024/gameimg/bgloading.png" as="image"><style>.pcConfig{margin:0 auto}body,html{margin:0;padding:0;width:100vw;height:100vh;overflow:hidden}.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background:url('./gameimg/img_bg.jpg') no-repeat center center;background-size:cover;z-index:0}#app{width:100%;height:100%;width:1920px;min-height:1080px;position:relative;overflow:visible;z-index:1}#scale-root{position:fixed;left:50%;top:50%;transform-origin:center center;transform:translate(-50%,-50%);overflow:visible}</style><script type="module" crossorigin src="/30024/assets/index-428feadf.js"></script><link rel="stylesheet" href="/30024/assets/index-85b95e78.css"></head><body><script>console.log('beforeinstallprompt init')
 
         window.addEventListener('beforeinstallprompt', (e) => {
             console.log('beforeinstallprompt')
@@ -20,7 +20,7 @@
            }else{
             appBox.classList.remove('pcConfig')
            }
-        }</script><div id="body_loading_spinner"></div><script src="/30024/js/loading.js"></script><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script src="/30024/js/EventBus.js" charset="utf-8"></script><script>// 🔥 正确：等待 Vue 初始化完成再跳转
+        }</script><script>// 只做一件事：存参数，不跳转、不刷新、不替换地址
       window.addEventListener('load', function () {
         if (window.resizeGame) {
           window.resizeGame()
@@ -29,26 +29,20 @@
         const path = window.location.pathname
         const search = window.location.search
 
+        // 只存参数，绝不跳转！
         if (search && (path === '/30024/' || path.includes('index.html'))) {
-          setTimeout(() => {
-            const params = new URLSearchParams(window.location.search)
-            const params2 = {
-              lang: params.get('lang') || 'en',
-              appid: params.get('appid') || 'appidtest',
-              gameId: params.get('gameId') || 'gameIdtest',
-              groupid: params.get('groupid') || 'groupidtest',
-              userid: params.get('userid') || 'useridtest',
-              ssoKey: params.get('ssoKey') || 'ssoKeytest',
-              brandName: params.get('brandName') || 'kf',
-            }
-
-            window.__GAME_PARAMS__ = params2
-
-            // ✅ 【唯一正确】不使用 router，直接 location 跳转（最稳）
-            window.location.replace('/30024/entry' + search)
-          }, 60)
+          const params = new URLSearchParams(window.location.search)
+          window.__GAME_PARAMS__ = {
+            lang: params.get('lang') || 'en',
+            appid: params.get('appid') || 'appidtest',
+            gameId: params.get('gameId') || 'gameIdtest',
+            groupid: params.get('groupid') || 'groupidtest',
+            userid: params.get('userid') || 'useridtest',
+            ssoKey: params.get('ssoKey') || 'ssoKeytest',
+            brandName: params.get('brandName') || 'kf',
+          }
         }
-      })</script></body><script></script><script>// 🔥 把 resize 挂载到 window，全局可用
+      })</script><div id="body_loading_spinner"></div><script src="/30024/js/loading.js"></script><div class="bg-layer"></div><div id="scale-root"><div id="app"></div></div><script src="/30024/js/EventBus.js" charset="utf-8"></script></body><script></script><script>// 🔥 把 resize 挂载到 window，全局可用
     window.resizeGame = function() {
       const designWidth = 1920
       const winWidth = document.documentElement.clientWidth || document.body.clientWidth
