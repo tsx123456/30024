@@ -143,7 +143,6 @@
         spinner.style.display = 'none';
         spinner.remove?.();
       }, 500);
-      eventBus.emit('showGameProgress');
       clearInterval(window.__LOADING_TIMER__);
     };
 
@@ -159,11 +158,11 @@
     /* =========================
      * APP_READY
      ========================= */
-    window.__LOADING_TIMER__ = setInterval(() => {
-      if (window.__APP_READY__ === true) {
-        close("app_ready");
-      }
-    }, 200);
+    // window.__LOADING_TIMER__ = setInterval(() => {
+    //   if (window.__APP_READY__ === true) {
+    //     close("app_ready");
+    //   }
+    // }, 200);
   }
 
   init();
